@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="theme-color" content="#f7f9fc" id="theme-color-meta">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-wallet"></i>
+                <h1>Expense Tracker</h1>
+            </div>
+            <p>Keep track of your spending</p>
+        </header>
+        
+        <div class="card add-expense-card">
+            <h2><i class="fas fa-plus-circle"></i> Add New Expense</h2>
+            <form id="expense-form" class="expense-form">
+                <div class="form-group">
+                    <label for="expense-name">Description</label>
+                    <input type="text" id="expense-name" placeholder="What did you spend on?" required>
+                </div>
+                <div class="form-group">
+                    <label for="expense-amount">Amount (Rs)</label>
+                    <input type="number" id="expense-amount" placeholder="0.00" min="0.01" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="expense-category">Category</label>
+                    <select id="expense-category" required>
+                        <option value="">Select Category</option>
+                        <option value="Food">Food & Dining</option>
+                        <option value="Transport">Transportation</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Utilities">Bills & Utilities</option>
+                        <option value="Shopping">Shopping</option>
+                        <option value="Housing">Housing & Rent</option>
+                        <option value="Health">Health & Medical</option>
+                        <option value="Education">Education</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="expense-date">Date</label>
+                    <input type="date" id="expense-date" required>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Add Expense
+                </button>
+            </form>
+        </div>
+        
+        <div class="dashboard">
+            <div class="card summary-card">
+                <h2><i class="fas fa-chart-pie"></i> Summary</h2>
+                <div class="summary">
+                    <div class="summary-item">
+                        <div class="summary-icon total-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="summary-details">
+                            <h3>Total Expenses</h3>
+                            <p id="total-expenses">Rs0.00</p>
+                        </div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-icon average-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="summary-details">
+                            <h3>Average Expense</h3>
+                            <p id="average-expense">Rs0.00</p>
+                        </div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-icon largest-icon">
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                        <div class="summary-details">
+                            <h3>Largest Expense</h3>
+                            <p id="largest-expense">Rs0.00</p>
+                        </div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-icon count-icon">
+                            <i class="fas fa-list"></i>
+                        </div>
+                        <div class="summary-details">
+                            <h3>Total Count</h3>
+                            <p id="expense-count">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card filter-card">
+                <h2><i class="fas fa-filter"></i> Filter Expenses</h2>
+                <div class="filter-controls">
+                    <div class="form-group">
+                        <label for="filter-category">Category</label>
+                        <select id="filter-category">
+                            <option value="">All Categories</option>
+                            <option value="Food">Food & Dining</option>
+                            <option value="Transport">Transportation</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Utilities">Bills & Utilities</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Housing">Housing & Rent</option>
+                            <option value="Health">Health & Medical</option>
+                            <option value="Education">Education</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sort-by">Sort By</label>
+                        <select id="sort-by">
+                            <option value="date-desc">Date (Newest First)</option>
+                            <option value="date-asc">Date (Oldest First)</option>
+                            <option value="amount-desc">Amount (Highest First)</option>
+                            <option value="amount-asc">Amount (Lowest First)</option>
+                            <option value="name-asc">Name (A-Z)</option>
+                        </select>
+                    </div>
+                    <button id="clear-filters" class="btn btn-secondary">
+                        <i class="fas fa-undo"></i> Reset Filters
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card expenses-card">
+            <h2><i class="fas fa-receipt"></i> Your Expenses</h2>
+            <div id="expense-list" class="expense-list">
+                <div class="no-expenses">
+                    <i class="fas fa-inbox fa-3x"></i>
+                    <p>No expenses added yet. Start tracking your spending!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card chart-card">
+            <h2><i class="fas fa-chart-pie"></i> Expense Breakdown</h2>
+            <div class="category-breakdown" id="category-breakdown">
+                <!-- Category breakdown will be inserted here by JavaScript -->
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Expense Tracker | Made with <i class="fas fa-heart"></i></p>
+        </footer>
+    </div>
+
+    <div id="toast" class="toast"></div>
+    <script src="script.js"></script>
+</body>
+</html>
